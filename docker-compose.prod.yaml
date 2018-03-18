@@ -1,0 +1,2 @@
+web:
+    image: your_docker_account/project1_web
