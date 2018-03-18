@@ -3,6 +3,10 @@ set -ex
 
 . ./env
 
+./build.sh
+
+docker push $IMAGE_NAME
+
 echo $IP_TO_DEPLOY
 echo $DOCKER_MACHINE_NAME
 
@@ -18,6 +22,7 @@ echo $DOCKER_MACHINE_NAME
 #eval $(docker-machine env $DOCKER_MACHINE_NAME)
 eval "$(docker-machine env $DOCKER_MACHINE_NAME)"
 
+docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml stop
 docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml up -d
 
 eval "$(docker-machine env -u)"
